@@ -1,0 +1,41 @@
+<div class="page">
+  <div class="back">
+    <a routerLink="/publishers">← Back to Publishers</a>
+  </div>
+
+  @if (service.loading()) {
+    <div class="loading">Loading...</div>
+  }
+
+  @if (service.error()) {
+    <div class="error">{{ service.error() }}</div>
+  }
+
+  @if (service.selectedPublisher(); as publisher) {
+    <div class="detail-card">
+      <div class="detail-header">
+        <div>
+          <h1>{{ publisher.name }}</h1>
+          <span class="country">{{ publisher.country }}</span>
+        </div>
+        <div class="detail-actions">
+          <a [routerLink]="['/publishers', publisher.id, 'edit']" class="btn btn-secondary">Edit</a>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Books published ({{ publisher.bookTitles.length }})</h2>
+
+        @if (publisher.bookTitles.length === 0) {
+          <p class="muted">No books published yet.</p>
+        } @else {
+          <ul class="book-list">
+            @for (title of publisher.bookTitles; track title) {
+              <li>{{ title }}</li>
+            }
+          </ul>
+        }
+      </div>
+    </div>
+  }
+</div>

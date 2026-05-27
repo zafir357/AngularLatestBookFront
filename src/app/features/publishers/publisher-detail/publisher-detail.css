@@ -1,0 +1,69 @@
+.page {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.back { margin-bottom: 1.5rem; }
+
+.loading { padding: 2rem; text-align: center; color: #6b7280; }
+
+.error {
+  color: #dc2626;
+  background: #fee2e2;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.detail-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 2rem;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.detail-header h1 { margin-bottom: 0.25rem; }
+.country { color: #6b7280; font-size: 0.95rem; }
+.detail-actions { display: flex; gap: 0.5rem; }
+.section h2 { margin-bottom: 1rem; color: #374151; }
+
+.book-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.book-list li {
+  padding: 0.75rem 1rem;
+  background: #f9fafb;
+  border-radius: 8px;
+  border-left: 3px solid #4f46e5;
+}
+
+.muted { color: #9ca3af; font-style: italic; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: none;
+  text-decoration: none;
+  transition: opacity 0.15s;
+  cursor: pointer;
+}
+
+.btn:hover { opacity: 0.85; text-decoration: none; }
+.btn-secondary { background: #e5e7eb; color: #374151; }

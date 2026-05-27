@@ -1,0 +1,62 @@
+<div class="page">
+  <div class="back">
+    <a routerLink="/authors">← Back to Authors</a>
+  </div>
+
+  <div class="form-card">
+    <h1>{{ isEdit ? 'Edit Author' : 'New Author' }}</h1>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+      <div class="field">
+        <label for="name">Name</label>
+        <input id="name" type="text" formControlName="name" placeholder="e.g. George Orwell" />
+        @if (nameControl.invalid && nameControl.touched) {
+          <span class="field-error">Name is required (min 2 characters)</span>
+        }
+      </div>
+
+      <div class="field">
+        <label for="country">Country</label>
+        <input id="country" type="text" formControlName="country" placeholder="e.g. UK" />
+        @if (countryControl.invalid && countryControl.touched) {
+          <span class="field-error">Country is required</span>
+        }
+      </div>
+
+      <!-- Books multi-select — many-to-many (edit only) -->
+      @if (isEdit) {
+        <div class="field">
+          <label>Books</label>
+          <span class="field-hint">Click to assign books to this author</span>
+          <div class="books-selector">
+            @for (book of service.availableBooks(); track book.id) {
+              <button
+                type="button"
+                class="book-chip"
+                [class.selected]="isBookSelected(book.id)"
+                (click)="toggleBook(book.id)">
+                <span>{{ book.title }}</span>
+                <span class="year">{{ book.year }}</span>
+                @if (isBookSelected(book.id)) {
+                  <span class="checkmark">✓</span>
+                }
+              </button>
+            }
+          </div>
+          @if (selectedBookIds.length > 0) {
+            <span class="selected-count">{{ selectedBookIds.length }} book(s) selected</span>
+          }
+        </div>
+      }
+
+      <div class="form-actions">
+        <a routerLink="/authors" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-primary" [disabled]="submitting">
+          {{ submitting ? 'Saving...' : (isEdit ? 'Update' : 'Create') }}
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

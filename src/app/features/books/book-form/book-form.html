@@ -1,0 +1,73 @@
+<div class="page">
+  <div class="back">
+    <a routerLink="/books">← Back to Books</a>
+  </div>
+
+  <div class="form-card">
+    <h1>{{ isEdit ? 'Edit Book' : 'New Book' }}</h1>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+      <!-- Title -->
+      <div class="field">
+        <label for="title">Title</label>
+        <input id="title" type="text" formControlName="title" placeholder="e.g. 1984" />
+        @if (titleControl.invalid && titleControl.touched) {
+          <span class="field-error">Title is required (min 2 characters)</span>
+        }
+      </div>
+
+      <!-- Year -->
+      <div class="field">
+        <label for="year">Year</label>
+        <input id="year" type="number" formControlName="year" placeholder="e.g. 1949" />
+        @if (yearControl.invalid && yearControl.touched) {
+          <span class="field-error">Valid year is required</span>
+        }
+      </div>
+
+      <!-- Publisher — one-to-many dropdown -->
+      <div class="field">
+        <label for="publisher">Publisher</label>
+        <select id="publisher" formControlName="publisherId">
+          <option [ngValue]="null">-- No Publisher --</option>
+          @for (publisher of service.availablePublishers(); track publisher.id) {
+            <option [ngValue]="publisher.id">{{ publisher.name }}</option>
+          }
+        </select>
+        <span class="field-hint">Optional — a book can exist without a publisher</span>
+      </div>
+
+      <!-- Authors — many-to-many multi-select -->
+      <div class="field">
+        <label>Authors</label>
+        <span class="field-hint">Click to select one or more authors</span>
+        <div class="authors-selector">
+          @for (author of service.availableAuthors(); track author.id) {
+            <button
+              type="button"
+              class="author-chip"
+              [class.selected]="isAuthorSelected(author.id)"
+              (click)="toggleAuthor(author.id)">
+              {{ author.name }}
+              @if (isAuthorSelected(author.id)) {
+                <span class="checkmark">✓</span>
+              }
+            </button>
+          }
+        </div>
+        @if (selectedAuthorIds.length > 0) {
+          <span class="selected-count">{{ selectedAuthorIds.length }} author(s) selected</span>
+        }
+      </div>
+
+      <div class="form-actions">
+        <a routerLink="/books" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-primary" [disabled]="submitting">
+          {{ submitting ? 'Saving...' : (isEdit ? 'Update' : 'Create') }}
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

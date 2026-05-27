@@ -1,0 +1,73 @@
+<div class="page">
+  <div class="page-header">
+    <h1>Books</h1>
+    <a routerLink="create" class="btn btn-primary">+ New Book</a>
+  </div>
+
+  @if (service.loading()) {
+    <div class="loading">Loading...</div>
+  }
+
+  @if (service.error()) {
+    <div class="error">{{ service.error() }}</div>
+  }
+
+  @if (!service.loading() && service.books().length === 0) {
+    <div class="empty-state">
+      <p>No books yet.</p>
+      <a routerLink="create" class="btn btn-primary">Add your first book</a>
+    </div>
+  }
+
+  @if (service.books().length > 0) {
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Publisher</th>
+            <th>Authors</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (book of service.books(); track book.id) {
+            <tr>
+              <td>
+                <a [routerLink]="[book.id]">{{ book.title }}</a>
+              </td>
+              <td>{{ book.year }}</td>
+              <td>
+                @if (book.publisher) {
+                  <a [routerLink]="['/publishers', book.publisher.id]" class="publisher-link">
+                    {{ book.publisher.name }}
+                  </a>
+                } @else {
+                  <span class="muted">No publisher</span>
+                }
+              </td>
+              <td>
+                <div class="authors-chips">
+                  @for (author of book.authors; track author.id) {
+                    <a [routerLink]="['/authors', author.id]" class="chip">
+                      {{ author.name }}
+                    </a>
+                  }
+                </div>
+              </td>
+              <td class="actions">
+                <a [routerLink]="[book.id, 'edit']" class="btn btn-sm btn-secondary">Edit</a>
+                <button
+                  class="btn btn-sm btn-danger"
+                  (click)="delete(book.id, book.title)">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

@@ -1,0 +1,90 @@
+.page { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+.back { margin-bottom: 1.5rem; }
+.loading { padding: 2rem; text-align: center; color: #6b7280; }
+.error { color: #dc2626; background: #fee2e2; border-radius: 8px; padding: 1rem; }
+
+.detail-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 2rem;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.detail-header h1 { margin-bottom: 0.25rem; }
+.year { color: #6b7280; font-size: 0.95rem; }
+.detail-actions { display: flex; gap: 0.5rem; }
+
+.section {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.section:last-child { border-bottom: none; margin-bottom: 0; }
+.section h2 { margin-bottom: 1rem; color: #374151; font-size: 1.1rem; }
+
+.publisher-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background: #f5f3ff;
+  border: 1px solid #ddd6fe;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #6d28d9;
+  font-weight: 500;
+  transition: background 0.15s;
+  max-width: 300px;
+}
+
+.publisher-card:hover { background: #ede9fe; text-decoration: none; }
+
+.authors-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.author-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1.25rem;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #1d4ed8;
+  font-weight: 500;
+  transition: background 0.15s;
+}
+
+.author-card:hover { background: #dbeafe; text-decoration: none; }
+.arrow { color: #9ca3af; }
+.muted { color: #9ca3af; font-style: italic; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: none;
+  text-decoration: none;
+  transition: opacity 0.15s;
+  cursor: pointer;
+}
+
+.btn:hover { opacity: 0.85; text-decoration: none; }
+.btn-secondary { background: #e5e7eb; color: #374151; }

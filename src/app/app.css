@@ -1,0 +1,9 @@
+.app-shell {
+  min-height: 100vh;
+  background-color: #f0f2f5;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.main-content {
+  padding: 1rem 0;
+}
