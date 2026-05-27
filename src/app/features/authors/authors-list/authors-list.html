@@ -1,11 +1,11 @@
 <div class="page">
   <div class="page-header">
-    <h1>Authors</h1>
-    <a routerLink="create" class="btn btn-primary">+ New Author</a>
+    <h1>Auteurs</h1>
+    <a routerLink="create" class="btn btn-primary">+ Nouvel auteur</a>
   </div>
 
   @if (service.loading()) {
-    <div class="loading">Loading...</div>
+    <div class="loading">Chargement...</div>
   }
 
   @if (service.error()) {
@@ -14,8 +14,8 @@
 
   @if (!service.loading() && service.authors().length === 0) {
     <div class="empty-state">
-      <p>No authors yet.</p>
-      <a routerLink="create" class="btn btn-primary">Add your first author</a>
+      <p>Aucun auteur pour le moment.</p>
+      <a routerLink="create" class="btn btn-primary">Ajouter votre premier auteur</a>
     </div>
   }
 
@@ -24,9 +24,9 @@
       <table>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Country</th>
-            <th>Books</th>
+            <th>Nom</th>
+            <th>Pays</th>
+            <th>Livres</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -41,11 +41,11 @@
               <span class="badge">{{ author.books.length }}</span>
             </td>
               <td class="actions">
-                <a [routerLink]="[author.id, 'edit']" class="btn btn-sm btn-secondary">Edit</a>
+                <a [routerLink]="[author.id, 'edit']" class="btn btn-sm btn-secondary">Modifier</a>
               <button
                 class="btn btn-sm btn-danger"
                 (click)="delete(author.id, author.books.length)">
-                Delete
+                Supprimer
               </button>
               </td>
             </tr>

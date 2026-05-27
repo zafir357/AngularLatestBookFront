@@ -1,11 +1,11 @@
 <div class="page">
   <div class="page-header">
-    <h1>Books</h1>
-    <a routerLink="create" class="btn btn-primary">+ New Book</a>
+    <h1>Livres</h1>
+    <a routerLink="create" class="btn btn-primary">+ Nouveau livre</a>
   </div>
 
   @if (service.loading()) {
-    <div class="loading">Loading...</div>
+    <div class="loading">Chargement...</div>
   }
 
   @if (service.error()) {
@@ -14,8 +14,8 @@
 
   @if (!service.loading() && service.books().length === 0) {
     <div class="empty-state">
-      <p>No books yet.</p>
-      <a routerLink="create" class="btn btn-primary">Add your first book</a>
+      <p>Aucun livre pour le moment.</p>
+      <a routerLink="create" class="btn btn-primary">Ajouter votre premier livre</a>
     </div>
   }
 
@@ -24,10 +24,10 @@
       <table>
         <thead>
           <tr>
-            <th>Title</th>
-            <th>Year</th>
-            <th>Publisher</th>
-            <th>Authors</th>
+            <th>Titre</th>
+            <th>Année</th>
+            <th>Éditeur</th>
+            <th>Auteurs</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -44,7 +44,7 @@
                     {{ book.publisher.name }}
                   </a>
                 } @else {
-                  <span class="muted">No publisher</span>
+                  <span class="muted">Sans éditeur</span>
                 }
               </td>
               <td>
@@ -57,11 +57,11 @@
                 </div>
               </td>
               <td class="actions">
-                <a [routerLink]="[book.id, 'edit']" class="btn btn-sm btn-secondary">Edit</a>
+                <a [routerLink]="[book.id, 'edit']" class="btn btn-sm btn-secondary">Modifier</a>
                 <button
                   class="btn btn-sm btn-danger"
                   (click)="delete(book.id, book.title)">
-                  Delete
+                  Supprimer
                 </button>
               </td>
             </tr>

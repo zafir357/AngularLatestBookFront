@@ -19,14 +19,14 @@ export class PublishersListComponent implements OnInit {
 
   async delete(id: number, bookCount: number) {
     const message = bookCount > 0
-      ? `This publisher has ${bookCount} book(s). Deleting it will leave them without a publisher.`
-      : 'Are you sure you want to delete this publisher?';
+      ? `Cet éditeur a ${bookCount} livre(s). Le supprimer les laissera sans éditeur.`
+      : 'Êtes-vous sûr de vouloir supprimer cet éditeur ?';
 
     const confirmed = await this.dialog.open({
-      title: 'Delete Publisher',
+      title: 'Supprimer l\'éditeur',
       message,
-      confirmText: 'Delete',
-      cancelText: 'Cancel',
+      confirmText: 'Supprimer',
+      cancelText: 'Annuler',
       danger: true
     });
 
@@ -34,7 +34,7 @@ export class PublishersListComponent implements OnInit {
 
     this.service.delete(id).subscribe({
       next: () => this.service.loadAll(),
-      error: () => alert('Failed to delete publisher')
+      error: () => alert('Échec de la suppression de l\'éditeur')
     });
   }
 }

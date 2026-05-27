@@ -1,36 +1,36 @@
 <div class="page">
   <div class="back">
-    <a routerLink="/publishers">← Back to Publishers</a>
+    <a routerLink="/publishers">← Retour aux éditeurs</a>
   </div>
 
   <div class="form-card">
-    <h1>{{ isEdit ? 'Edit Publisher' : 'New Publisher' }}</h1>
+    <h1>{{ isEdit ? 'Modifier l\'éditeur' : 'Nouvel éditeur' }}</h1>
 
     <form [formGroup]="form" (ngSubmit)="submit()">
 
       <div class="field">
-        <label for="name">Name</label>
-        <input id="name" type="text" formControlName="name" placeholder="e.g. Penguin Books" />
+        <label for="name">Nom</label>
+        <input id="name" type="text" formControlName="name" placeholder="ex. Penguin Books" />
         @if (nameControl.invalid && nameControl.touched) {
-          <span class="field-error">Name is required (min 2 characters)</span>
+          <span class="field-error">Le nom est requis (min 2 caractères)</span>
         }
       </div>
 
       <div class="field">
-        <label for="country">Country</label>
-        <input id="country" type="text" formControlName="country" placeholder="e.g. UK" />
+        <label for="country">Pays</label>
+        <input id="country" type="text" formControlName="country" placeholder="ex. Royaume-Uni" />
         @if (countryControl.invalid && countryControl.touched) {
-          <span class="field-error">Country is required</span>
+          <span class="field-error">Le pays est requis</span>
         }
       </div>
 
       @if (isEdit) {
         <div class="field">
-          <label>Books</label>
-          <span class="field-hint">Select books published by this publisher</span>
+          <label>Livres</label>
+          <span class="field-hint">Sélectionner les livres publiés par cet éditeur</span>
           <div class="books-selector">
             @if (service.availableBooks().length === 0) {
-              <p class="muted">No books available.</p>
+              <p class="muted">Aucun livre disponible.</p>
             }
             @for (book of service.availableBooks(); track book.id) {
               <button
@@ -47,15 +47,15 @@
             }
           </div>
           @if (selectedBookIds.length > 0) {
-            <span class="selected-count">{{ selectedBookIds.length }} book(s) selected</span>
+            <span class="selected-count">{{ selectedBookIds.length }} livre(s) sélectionné(s)</span>
           }
         </div>
       }
 
       <div class="form-actions">
-        <a routerLink="/publishers" class="btn btn-secondary">Cancel</a>
+        <a routerLink="/publishers" class="btn btn-secondary">Annuler</a>
         <button type="submit" class="btn btn-primary" [disabled]="submitting">
-          {{ submitting ? 'Saving...' : (isEdit ? 'Update' : 'Create') }}
+          {{ submitting ? 'Enregistrement...' : (isEdit ? 'Mettre à jour' : 'Créer') }}
         </button>
       </div>
 

@@ -1,10 +1,10 @@
 <div class="page">
   <div class="back">
-    <a routerLink="/books">← Back to Books</a>
+    <a routerLink="/books">← Retour aux livres</a>
   </div>
 
   @if (service.loading()) {
-    <div class="loading">Loading...</div>
+    <div class="loading">Chargement...</div>
   }
 
   @if (service.error()) {
@@ -16,31 +16,31 @@
       <div class="detail-header">
         <div>
           <h1>{{ book.title }}</h1>
-          <span class="year">Published {{ book.year }}</span>
+          <span class="year">Publié en {{ book.year }}</span>
         </div>
         <div class="detail-actions">
-          <a [routerLink]="['/books', book.id, 'edit']" class="btn btn-secondary">Edit</a>
+          <a [routerLink]="['/books', book.id, 'edit']" class="btn btn-secondary">Modifier</a>
         </div>
       </div>
 
-      <!-- Publisher — one-to-many -->
+      <!-- Éditeur — one-to-many -->
       <div class="section">
-        <h2>Publisher</h2>
+        <h2>Éditeur</h2>
         @if (book.publisher) {
           <a [routerLink]="['/publishers', book.publisher.id]" class="publisher-card">
             <span class="publisher-name">{{ book.publisher.name }}</span>
             <span class="arrow">→</span>
           </a>
         } @else {
-          <p class="muted">No publisher assigned.</p>
+          <p class="muted">Aucun éditeur assigné.</p>
         }
       </div>
 
-      <!-- Authors — many-to-many -->
+      <!-- Auteurs — many-to-many -->
       <div class="section">
-        <h2>Authors ({{ book.authors.length }})</h2>
+        <h2>Auteurs ({{ book.authors.length }})</h2>
         @if (book.authors.length === 0) {
-          <p class="muted">No authors assigned.</p>
+          <p class="muted">Aucun auteur assigné.</p>
         } @else {
           <div class="authors-grid">
             @for (author of book.authors; track author.id) {

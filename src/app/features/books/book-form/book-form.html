@@ -1,47 +1,47 @@
 <div class="page">
   <div class="back">
-    <a routerLink="/books">← Back to Books</a>
+    <a routerLink="/books">← Retour aux livres</a>
   </div>
 
   <div class="form-card">
-    <h1>{{ isEdit ? 'Edit Book' : 'New Book' }}</h1>
+    <h1>{{ isEdit ? 'Modifier le livre' : 'Nouveau livre' }}</h1>
 
     <form [formGroup]="form" (ngSubmit)="submit()">
 
-      <!-- Title -->
+      <!-- Titre -->
       <div class="field">
-        <label for="title">Title</label>
-        <input id="title" type="text" formControlName="title" placeholder="e.g. 1984" />
+        <label for="title">Titre</label>
+        <input id="title" type="text" formControlName="title" placeholder="ex. 1984" />
         @if (titleControl.invalid && titleControl.touched) {
-          <span class="field-error">Title is required (min 2 characters)</span>
+          <span class="field-error">Le titre est requis (min 2 caractères)</span>
         }
       </div>
 
-      <!-- Year -->
+      <!-- Année -->
       <div class="field">
-        <label for="year">Year</label>
-        <input id="year" type="number" formControlName="year" placeholder="e.g. 1949" />
+        <label for="year">Année</label>
+        <input id="year" type="number" formControlName="year" placeholder="ex. 1949" />
         @if (yearControl.invalid && yearControl.touched) {
-          <span class="field-error">Valid year is required</span>
+          <span class="field-error">Une année valide est requise</span>
         }
       </div>
 
-      <!-- Publisher — one-to-many dropdown -->
+      <!-- Éditeur — one-to-many dropdown -->
       <div class="field">
-        <label for="publisher">Publisher</label>
+        <label for="publisher">Éditeur</label>
         <select id="publisher" formControlName="publisherId">
-          <option [ngValue]="null">-- No Publisher --</option>
+          <option [ngValue]="null">-- Sans éditeur --</option>
           @for (publisher of service.availablePublishers(); track publisher.id) {
             <option [ngValue]="publisher.id">{{ publisher.name }}</option>
           }
         </select>
-        <span class="field-hint">Optional — a book can exist without a publisher</span>
+        <span class="field-hint">Facultatif — un livre peut exister sans éditeur</span>
       </div>
 
-      <!-- Authors — many-to-many multi-select -->
+      <!-- Auteurs — many-to-many multi-select -->
       <div class="field">
-        <label>Authors</label>
-        <span class="field-hint">Click to select one or more authors</span>
+        <label>Auteurs</label>
+        <span class="field-hint">Cliquez pour sélectionner un ou plusieurs auteurs</span>
         <div class="authors-selector">
           @for (author of service.availableAuthors(); track author.id) {
             <button
@@ -57,14 +57,14 @@
           }
         </div>
         @if (selectedAuthorIds.length > 0) {
-          <span class="selected-count">{{ selectedAuthorIds.length }} author(s) selected</span>
+          <span class="selected-count">{{ selectedAuthorIds.length }} auteur(s) sélectionné(s)</span>
         }
       </div>
 
       <div class="form-actions">
-        <a routerLink="/books" class="btn btn-secondary">Cancel</a>
+        <a routerLink="/books" class="btn btn-secondary">Annuler</a>
         <button type="submit" class="btn btn-primary" [disabled]="submitting">
-          {{ submitting ? 'Saving...' : (isEdit ? 'Update' : 'Create') }}
+          {{ submitting ? 'Enregistrement...' : (isEdit ? 'Mettre à jour' : 'Créer') }}
         </button>
       </div>
 

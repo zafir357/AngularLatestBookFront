@@ -14,8 +14,8 @@ export class ConfirmDialogService {
   config = signal<DialogConfig>({
     title: '',
     message: '',
-    confirmText: 'Confirm',
-    cancelText: 'Cancel',
+    confirmText: 'Confirmer',
+    cancelText: 'Annuler',
     danger: true
   });
 
@@ -23,8 +23,8 @@ export class ConfirmDialogService {
 
   open(config: DialogConfig): Promise<boolean> {
     this.config.set({
-      confirmText: 'Confirm',
-      cancelText: 'Cancel',
+      confirmText: 'Confirmer',
+      cancelText: 'Annuler',
       danger: true,
       ...config
     });

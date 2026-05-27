@@ -1,10 +1,10 @@
 <div class="page">
   <div class="back">
-    <a routerLink="/publishers">← Back to Publishers</a>
+    <a routerLink="/publishers">← Retour aux éditeurs</a>
   </div>
 
   @if (service.loading()) {
-    <div class="loading">Loading...</div>
+    <div class="loading">Chargement...</div>
   }
 
   @if (service.error()) {
@@ -19,15 +19,15 @@
           <span class="country">{{ publisher.country }}</span>
         </div>
         <div class="detail-actions">
-          <a [routerLink]="['/publishers', publisher.id, 'edit']" class="btn btn-secondary">Edit</a>
+          <a [routerLink]="['/publishers', publisher.id, 'edit']" class="btn btn-secondary">Modifier</a>
         </div>
       </div>
 
       <div class="section">
-        <h2>Books published ({{ publisher.bookTitles.length }})</h2>
+        <h2>Livres publiés ({{ publisher.bookTitles.length }})</h2>
 
         @if (publisher.bookTitles.length === 0) {
-          <p class="muted">No books published yet.</p>
+          <p class="muted">Aucun livre publié pour le moment.</p>
         } @else {
           <ul class="book-list">
             @for (title of publisher.bookTitles; track title) {

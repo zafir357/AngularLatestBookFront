@@ -19,11 +19,11 @@ export class AuthorsList implements OnInit {
 
 async delete(id: number, bookCount: number) {
   const confirmed = await this.dialog.open({
-    title: 'Delete Author',
+    title: 'Supprimer l\'auteur',
     message: bookCount > 0
-      ? `This author has ${bookCount} book(s). Are you sure?`
-      : 'Are you sure you want to delete this author?',
-    confirmText: 'Delete',
+      ? `Cet auteur a ${bookCount} livre(s). Êtes-vous sûr ?`
+      : 'Êtes-vous sûr de vouloir supprimer cet auteur ?',
+    confirmText: 'Supprimer',
     danger: true
   });
 
@@ -31,7 +31,7 @@ async delete(id: number, bookCount: number) {
 
   this.service.delete(id).subscribe({
     next: () => this.service.loadAll(),
-    error: () => alert('Failed to delete author')
+    error: () => alert('Échec de la suppression de l\'auteur')
   });
 }
 }

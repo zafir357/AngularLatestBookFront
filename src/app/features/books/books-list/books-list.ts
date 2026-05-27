@@ -19,9 +19,9 @@ export class BooksList implements OnInit {
 
   async delete(id: number, title: string) {
     const confirmed = await this.dialog.open({
-      title: 'Delete Book',
-      message: `Are you sure you want to delete "${title}"?`,
-      confirmText: 'Delete',
+      title: 'Supprimer le livre',
+      message: `Êtes-vous sûr de vouloir supprimer "${title}" ?`,
+      confirmText: 'Supprimer',
       danger: true
     });
 
@@ -29,7 +29,7 @@ export class BooksList implements OnInit {
 
     this.service.delete(id).subscribe({
       next: () => this.service.loadAll(),
-      error: () => alert('Failed to delete book')
+      error: () => alert('Échec de la suppression du livre')
     });
   }
 }
